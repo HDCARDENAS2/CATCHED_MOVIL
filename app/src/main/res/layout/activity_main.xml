@@ -4,11 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    style="@style/Fondo"
     tools:context="com.catched_movil.app.Vista.MainActivity">
 
 
-
-
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="397dp"
+        android:layout_height="526dp"
+        app:srcCompat="@drawable/incono"
+        android:layout_gravity="center"
+   />
 
 
 </android.support.constraint.ConstraintLayout>

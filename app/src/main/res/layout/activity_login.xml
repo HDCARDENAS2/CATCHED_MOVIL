@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
+<<<<<<< HEAD
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+=======
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+>>>>>>> Se adiciona los serivcios logeo, gestion
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+<<<<<<< HEAD
     tools:context="com.catched_movil.app.Vista.Login">
 
     <LinearLayout
@@ -27,6 +32,34 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingTop="50px"
+=======
+    style="@style/Fondo"
+    tools:context="com.catched_movil.app.Vista.Login">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="268dp"
+            android:layout_height="128dp"
+            android:layout_gravity="center"
+            app:srcCompat="@drawable/incono" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            />
+
+        <TextView
+            android:id="@+id/login_txt_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Titulostipo4"
+            android:layout_gravity="center"
+>>>>>>> Se adiciona los serivcios logeo, gestion
             android:text="Usuario" />
 
         <EditText
@@ -34,6 +67,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+<<<<<<< HEAD
             android:textAlignment="center"
             android:inputType="textEmailAddress" />
 
@@ -41,6 +75,20 @@
             android:id="@+id/login_txt_3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+=======
+            android:inputType="textEmailAddress"
+            style="@style/Texto2"
+            android:textAlignment="center"
+
+            />
+
+        <TextView
+            android:id="@+id/login_txt_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Titulostipo4"
+            android:layout_gravity="center"
+>>>>>>> Se adiciona los serivcios logeo, gestion
             android:text="Contraseña" />
 
         <EditText
@@ -49,7 +97,20 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:textAlignment="center"
+<<<<<<< HEAD
             android:inputType="textPassword" />
+=======
+            style="@style/Texto2"
+            android:inputType="textPassword"
+
+            />
+
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            />
+>>>>>>> Se adiciona los serivcios logeo, gestion
 
         <Button
             android:id="@+id/Login"
@@ -57,9 +118,33 @@
             android:layout_height="wrap_content"
             android:onClick="IniciarSession"
             android:textAlignment="center"
+<<<<<<< HEAD
             android:text="Login" />
+=======
+            android:text="Ingresar" />
+
+        <Button
+            android:id="@+id/Registro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="RegistraUsuario"
+            android:textAlignment="center"
+            android:text="Registrarse" />
+
+        <Button
+            android:id="@+id/Config"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="GestionarConexion"
+            android:textAlignment="center"
+            android:text="Conexion" />
+>>>>>>> Se adiciona los serivcios logeo, gestion
 
     </LinearLayout>
 
 
+<<<<<<< HEAD
 </android.support.constraint.ConstraintLayout>
+=======
+</ScrollView>
+>>>>>>> Se adiciona los serivcios logeo, gestion

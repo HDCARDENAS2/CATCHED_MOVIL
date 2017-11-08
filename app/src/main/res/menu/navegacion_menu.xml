@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/menu">
+
+    <group android:checkableBehavior="single">
+        <item android:id="@+id/datos_personales"
+              android:title="Datos Personales"
+              android:icon="@drawable/info_ic"
+            />
+
+        <item android:id="@+id/consulta_eventos"
+            android:title="Eventos"
+            android:icon="@drawable/eventos_ic"
+            />
+
+        <item android:id="@+id/cerrarsession"
+            android:title="Salir "
+            android:icon="@drawable/salir_ic"
+            />
+
+    </group>
+</menu>

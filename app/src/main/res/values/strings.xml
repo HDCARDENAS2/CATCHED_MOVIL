@@ -1,4 +1,16 @@
 <resources>
+
+    <string name="navigation_drawer_open">0</string>
+    <string name="navigation_drawer_close">1</string>
+
     <string name="app_name">CATCHED</string>
     <string name="title_activity_registro_servicio">RegistroServicio</string>
+    <string name="desc_list_item_icon">Item Icon</string>
+
+    <string name="abrir">open</string>
+    <string name="cerrar">close</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>

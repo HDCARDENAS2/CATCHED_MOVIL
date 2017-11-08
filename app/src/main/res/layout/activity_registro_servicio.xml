@@ -1,54 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    style="@style/Fondo"
     tools:context="com.catched_movil.app.Vista.RegistroServicio">
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:weightSum="1">
-
+        android:orientation="vertical">
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            />
         <TextView
             android:id="@+id/registro_sr_txt_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            style="@style/Titulostipo4"
             android:layout_gravity="center"
-            android:paddingTop="50px"
             android:text="Conexion a Servidor" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            />
+
 
         <TextView
             android:id="@+id/registro_sr_txt_2"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingTop="50px"
+            style="@style/Titulostipo4"
+            android:layout_gravity="center"
             android:text="Host" />
+
+
 
         <EditText
             android:id="@+id/registro_servicio_edtxt_host"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:inputType="textPersonName"
+            style="@style/Texto2"
             android:textAlignment="center"
-            android:inputType="textPersonName" />
+            />
 
         <TextView
             android:id="@+id/registro_sr_txt_3"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            style="@style/Titulostipo4"
+            android:layout_gravity="center"
             android:text="Contraseña" />
+
 
         <EditText
             android:id="@+id/registro_servicio_edtxt_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:inputType="textPassword"
+            style="@style/Texto2"
             android:textAlignment="center"
-            android:inputType="textPassword" />
+            />
+
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            />
 
         <Button
             android:id="@+id/ConnectarServicio"
@@ -58,6 +83,14 @@
             android:textAlignment="center"
             android:text="Conectar" />
 
+        <Button
+            android:id="@+id/CancelarServicio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="CancelarServicio"
+            android:textAlignment="center"
+            android:text="Cancelar" />
+
     </LinearLayout>
 
-</android.support.design.widget.CoordinatorLayout>
+</ScrollView>

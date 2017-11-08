@@ -20,6 +20,7 @@ import com.catched_movil.app.Control.GenerarlBD;
 import com.catched_movil.app.Control.GestionBD;
 import com.catched_movil.app.Control.ServiceHandler;
 import com.catched_movil.app.Model.AjaxResultado;
+import com.catched_movil.app.Model.Parametros;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
@@ -39,6 +40,7 @@ public class RegistroServicio extends AppCompatActivity {
     private String url_host;
     private String password;
     private GenerarlBD GNBD;
+    Parametros obj_parametros;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +52,7 @@ public class RegistroServicio extends AppCompatActivity {
         GNBD              = new GenerarlBD();
         edtxt_url_host    = (EditText)findViewById(R.id.registro_servicio_edtxt_host);
         edtxt_password    = (EditText)findViewById(R.id.registro_servicio_edtxt_password);
-
+        obj_parametros    = new Parametros();
     }
 
     public void ConnectarServicio(View v) {
@@ -59,14 +61,17 @@ public class RegistroServicio extends AppCompatActivity {
 
             url_host = edtxt_url_host.getText().toString();
             password = obj_funciones.encodeBase64(edtxt_password.getText().toString()).trim();
-            Constantes.HOST = url_host;
-            obj_funciones.MensajeToast(context,"Conectando...");
             new Servicio_validar().execute();
 
         }catch (Exception e){
             e.printStackTrace();
             obj_funciones.MensajeToast(context,"Ocurrio un error ");
         }
+    }
+
+    public void CancelarServicio(View v) {
+        limpiarCampos();
+        obj_funciones.Actividad(context, MainActivity.class);
     }
 
     public void limpiarCampos(){
@@ -77,6 +82,7 @@ public class RegistroServicio extends AppCompatActivity {
     private class Servicio_validar extends AsyncTask<Void, Void, Void> {
 
         private boolean ok;
+        private String  mensaje_rs;
 
         @Override
         protected void onPreExecute() {
@@ -91,26 +97,36 @@ public class RegistroServicio extends AppCompatActivity {
             ArrayList<NameValuePair> parametros = new ArrayList<NameValuePair>();
             parametros.add(new BasicNameValuePair(Constantes.KEY,password));
 
+            mensaje = "Error Desconocido.";
+
             try {
 
-                String jsonStr = servicio.makeServiceCall(Constantes.HOST,Constantes.WS_REGISTRO_APP,Constantes.MODO_SERVICIO,parametros);
+                String jsonStr = servicio.makeServiceCall(url_host,Constantes.WS_REGISTRO_APP,Constantes.MODO_SERVICIO,parametros);
                 if (jsonStr != null) {
                     try {
                         JSONObject jsonObj = new JSONObject(jsonStr);
-                        AjaxResultado resultado = servicio.fn_json_to_has_map(jsonObj,null);
+                        AjaxResultado resultado = servicio.fn_json_to_has_map(jsonObj,null,2);
                         if(resultado.getErrores() != null){
                             mensaje = resultado.getErrores();
                         }else if(resultado.getResultado() != null){
 
-                            if(GNBD.fn_insertParametro(BD,"1",url_host)){
-                                if(GNBD.fn_insertParametro(BD,"2",resultado.getResultado())){
-                                    ok = true;
-                                }else{
-                                    mensaje = "Ocurrio al guardar los datos.";
-                                }
+                            String host = obj_parametros.fn_consulta_parametro(BD,"1");
+                            if(host == null){
+                                GNBD.fn_insertParametro(BD,"1",url_host);
                             }else{
-                                mensaje = "Ocurrio al guardar los datos.";
+                                GNBD.fn_updateParametro(BD,"1",url_host);
                             }
+
+                            String password_c = obj_parametros.fn_consulta_parametro(BD,"2");
+                            if(password_c == null){
+                                GNBD.fn_insertParametro(BD,"2",password);
+                            }else{
+                                GNBD.fn_updateParametro(BD,"2",password);
+                            }
+
+                            Constantes.HOST = url_host;
+                            mensaje_rs = resultado.getMensajes();
+                            ok = true;
                         }
 
                     } catch (JSONException e) {
@@ -131,10 +147,9 @@ public class RegistroServicio extends AppCompatActivity {
 
         protected void onProgressUpdate (Void... valores) {
             if (ok) {
-                obj_funciones.MensajeToast(context,"Conexion Exitosa.");
                 limpiarCampos();
-                Intent intent = new Intent(context, Login.class);
-                startActivity(intent);
+                obj_funciones.MensajeToast(context,mensaje_rs);
+                obj_funciones.Actividad(context, Login.class);
             }else{
                 obj_funciones.MensajeToast(context,mensaje);
             }

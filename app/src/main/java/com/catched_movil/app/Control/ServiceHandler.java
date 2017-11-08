@@ -95,7 +95,7 @@ public class ServiceHandler {
 		return response;
 	}
 
-	public AjaxResultado fn_json_to_has_map(JSONObject jsonObj, String[] variables) throws JSONException {
+	public AjaxResultado fn_json_to_has_map(JSONObject jsonObj, String[] variables,int tipo) throws JSONException {
 
 		AjaxResultado resultado = new AjaxResultado();
 		ArrayList<HashMap<String, String>> array_final = new ArrayList<HashMap<String, String>>();
@@ -121,7 +121,8 @@ public class ServiceHandler {
 		}
 
         if(!jsonObj.get(Constantes.JSON_RESULTADO).toString().equals("null")){
-			if( variables != null){
+
+			if( tipo == 1){
 				JSONArray datos = jsonObj.getJSONArray(Constantes.JSON_RESULTADO);
 				for (int i = 0; i < datos.length(); i++) {
 					JSONObject temp = datos.getJSONObject(i);
@@ -135,8 +136,18 @@ public class ServiceHandler {
 
 				resultado.setResultado_array(array_final);
 
-			}else{
+			}else if( tipo == 2){
 				resultado.setResultado(jsonObj.getString(Constantes.JSON_RESULTADO));
+			}else if( tipo == 3){
+
+				JSONObject datos = jsonObj.getJSONObject(Constantes.JSON_RESULTADO);
+				HashMap<String, String> contact = new HashMap<String, String>();
+				for (int j = 0; j < variables.length ; j++) {
+					String dato = datos.getString(variables[j]);
+					contact.put(variables[j], dato.equals("null") ? null : dato );
+				}
+				array_final.add(contact);
+                resultado.setResultado_array(array_final);
 			}
 
 		}

@@ -47,6 +47,12 @@ public class Login extends AppCompatActivity {
         obj_parametros    = new Parametros();
         edtxt_usuario     = (EditText)findViewById(R.id.login_edtxt_usuario);
         edtxt_password    = (EditText)findViewById(R.id.login_edtxt_password);
+
+        String url                = obj_parametros.fn_consulta_parametro(BD,"1");
+        if( url != null ){
+            Constantes.HOST = url;
+        }
+
     }
 
     public void IniciarSession(View v) {
@@ -56,6 +62,7 @@ public class Login extends AppCompatActivity {
             String usuario    = obj_funciones.generarCaracteres(5)+obj_funciones.encodeBase64(edtxt_usuario.getText().toString()).trim();
             String password   = obj_funciones.generarCaracteres(4)+obj_funciones.encodeBase64(edtxt_password.getText().toString()).trim();
             Constantes.AUTENTIFICACION = (usuario+Constantes.CONCATENACION+password).trim();
+            Log.e("contrasena",Constantes.AUTENTIFICACION);
             new Servicio_validar().execute();
 
         }catch (Exception e){
@@ -64,6 +71,15 @@ public class Login extends AppCompatActivity {
         }
     }
 
+    public void RegistraUsuario(View v) {
+        limpiarCampos();
+        obj_funciones.Actividad(context, RegistroUsuario.class);
+    }
+
+    public void GestionarConexion(View v) {
+        limpiarCampos();
+        obj_funciones.Actividad(context, RegistroServicio.class);
+    }
 
     public void limpiarCampos(){
         edtxt_usuario.setText("");
@@ -87,16 +103,18 @@ public class Login extends AppCompatActivity {
             ArrayList<NameValuePair> parametros = new ArrayList<NameValuePair>();
             parametros.add(new BasicNameValuePair(Constantes.KEY,Constantes.AUTENTIFICACION));
 
+            mensaje = "Error Desconocido.";
+
             try {
                 String jsonStr = servicio.makeServiceCall(Constantes.HOST,Constantes.WS_LONGIN,Constantes.MODO_SERVICIO,parametros);
+                Log.e("json",jsonStr);
                 if (jsonStr != null) {
                     try {
                         JSONObject jsonObj = new JSONObject(jsonStr);
-                        AjaxResultado resultado = servicio.fn_json_to_has_map(jsonObj,Constantes.CT_USUARIO);
-
+                        AjaxResultado resultado = servicio.fn_json_to_has_map(jsonObj,Constantes.CT_USUARIO,3);
                         if(resultado.getErrores() != null){
                             mensaje = resultado.getErrores();
-                        }else if(resultado.getResultado() != null){
+                        }else if(resultado.getResultado_array() != null){
 
                             String session   = obj_parametros.fn_consulta_parametro(BD,"3");
                             if( session != null ){
@@ -105,12 +123,22 @@ public class Login extends AppCompatActivity {
                                 GNBD.fn_insertParametro(BD,"3","1");
                             }
 
-                            ok = true;
+                            String fecha_evento = jsonObj.getString(Constantes.FECHA).toString().trim();
+                            Log.e("login","fehca"+fecha_evento);
+                            String fecha = obj_parametros.fn_consulta_parametro(BD,"4");
 
+                            if(fecha != null){
+                                GNBD.fn_updateParametro(BD,"4",fecha_evento);
+                            }else{
+                                GNBD.fn_insertParametro(BD,"4",fecha_evento);
+                            }
+
+                            ok = true;
                         }
 
                     } catch (JSONException e) {
                         e.printStackTrace();
+                        Log.e("json",jsonStr);
                         mensaje = "Ocurrio un error en los datos JSON.";
                     }
                 }else{
@@ -120,16 +148,16 @@ public class Login extends AppCompatActivity {
                 e.printStackTrace();
                 mensaje = "Error.";
             }
-
             publishProgress();
             return null;
         }
 
         protected void onProgressUpdate (Void... valores) {
             if (ok) {
+
                 limpiarCampos();
-                Intent intent = new Intent(context, Menu.class);
-                startActivity(intent);
+                obj_funciones.Actividad(context, MenuPr.class);
+
             }else{
                 obj_funciones.MensajeToast(context,mensaje);
             }

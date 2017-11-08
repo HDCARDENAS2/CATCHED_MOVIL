@@ -1,0 +1,131 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        style="@style/Fondo"
+        tools:context="com.catched_movil.app.Vista.ModificarUsuario">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                />
+
+            <TextView
+                android:id="@+id/modifi_us_txt_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Datos Personales"
+                style="@style/Titulostipo4"
+                android:layout_gravity="center"
+
+                />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                />
+
+            <TextView
+                android:id="@+id/modifi_us_txt_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/Titulostipo4"
+                android:layout_gravity="center"
+                android:text="Usuario" />
+
+            <EditText
+                android:id="@+id/modifi_us_edtxt_usuario"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:inputType="textEmailAddress"
+                style="@style/Texto2"
+                android:textAlignment="center"
+                />
+
+
+            <TextView
+                android:id="@+id/modifi_us_txt_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/Titulostipo4"
+                android:layout_gravity="center"
+                android:text="Nombres" />
+
+            <EditText
+                android:id="@+id/modifi_us_edtxt_nombre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:inputType="text"
+                style="@style/Texto2"
+                android:textAlignment="center"
+
+                />
+
+            <TextView
+                style="@style/Titulostipo4"
+                android:layout_gravity="center"
+                android:id="@+id/modifi_us_txt_4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Contraseña" />
+
+
+            <EditText
+
+                android:id="@+id/modifi_us_edtxt_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:inputType="textPassword"
+                style="@style/Texto2"
+                android:textAlignment="center"
+
+                />
+
+            <TextView
+                style="@style/Titulostipo4"
+                android:layout_gravity="center"
+                android:id="@+id/modifi_us_txt_5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Confirmar Contraseña" />
+
+            <EditText
+                android:id="@+id/modifi_us_edtxt_password_confirmar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:inputType="textPassword"
+                style="@style/Texto2"
+                android:textAlignment="center"
+
+                />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                />
+            <Button
+                android:id="@+id/modifi_us_registrar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Modificar"
+                android:textAlignment="center" />
+
+            <Button
+                android:id="@+id/modifi_us_cancelar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Cancelar"
+                android:textAlignment="center" />
+        </LinearLayout>
+</ScrollView>
+    

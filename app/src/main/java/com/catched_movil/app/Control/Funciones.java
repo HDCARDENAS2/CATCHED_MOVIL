@@ -2,10 +2,13 @@ package com.catched_movil.app.Control;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.util.Base64;
 import android.widget.Toast;
 
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Random;
 
 /**
@@ -18,8 +21,10 @@ public class Funciones {
     }
 
     public void MensajeToast(Context context, String texto){
-        Toast toast = Toast.makeText(context, texto, Toast.LENGTH_SHORT);
-        toast.show();
+        if( texto != null ? texto.length() > 0 : false ){
+            Toast toast = Toast.makeText(context, texto, Toast.LENGTH_SHORT);
+            toast.show();
+        }
     }
 
     public void MensajeDialogo(Context context,String titulo,String texto){
@@ -51,6 +56,23 @@ public class Funciones {
         }
 
         return resultado;
+    }
+
+    public void Actividad(Context context, Class<?> cls ){
+        Intent intent = new Intent(context, cls);
+        context.startActivity(intent);
+    }
+
+
+    public void setUsuario(ArrayList<HashMap<String, String>> resultado){
+
+        for(HashMap<String, String> dato : resultado){
+            Constantes.o_usuario.setCod_usuario(dato.get(Constantes.CT_USUARIO_COD_USUARIO));
+            Constantes.o_usuario.setNombres(dato.get(Constantes.CT_USUARIO_NOMBRES));
+            Constantes.o_usuario.setUsuario(dato.get(Constantes.CT_USUARIO_USUARIO));
+            Constantes.o_usuario.setCod_roll(dato.get(Constantes.CT_USUARIO_COD_ROLL));
+        }
+
     }
 
 
