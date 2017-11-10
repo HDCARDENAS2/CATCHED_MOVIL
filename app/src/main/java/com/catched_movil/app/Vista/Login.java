@@ -124,7 +124,9 @@ public class Login extends AppCompatActivity {
                             }
 
                             String fecha_evento = jsonObj.getString(Constantes.FECHA).toString().trim();
+
                             Log.e("login","fehca"+fecha_evento);
+
                             String fecha = obj_parametros.fn_consulta_parametro(BD,"4");
 
                             if(fecha != null){
@@ -132,6 +134,8 @@ public class Login extends AppCompatActivity {
                             }else{
                                 GNBD.fn_insertParametro(BD,"4",fecha_evento);
                             }
+
+                            obj_funciones.setUsuario(resultado.getResultado_array());
 
                             ok = true;
                         }

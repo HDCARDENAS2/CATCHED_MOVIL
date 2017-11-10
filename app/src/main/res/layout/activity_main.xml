@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     style="@style/Fondo"
-    tools:context="com.catched_movil.app.Vista.MainActivity">
+    tools:context="com.catched_movil.app.Vista.MainActivity"
+    >
 
 
     <ImageView

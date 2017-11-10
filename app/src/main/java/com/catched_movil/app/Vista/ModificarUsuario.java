@@ -61,7 +61,7 @@ public class ModificarUsuario extends android.app.Fragment implements View.OnCli
         registrar.setOnClickListener(this);
         Button cancelar = (Button) myview.findViewById(R.id.modifi_us_cancelar);
         cancelar.setOnClickListener(this);
-
+        limpiarCampos();
         return myview;
     }
 
@@ -91,8 +91,8 @@ public class ModificarUsuario extends android.app.Fragment implements View.OnCli
     }
 
     public void limpiarCampos(){
-        edtxt_usuario.setText("");
-        edtxt_nombre.setText("");
+        edtxt_usuario.setText(Constantes.o_usuario.getUsuario());
+        edtxt_nombre.setText(Constantes.o_usuario.getNombres());
         edtxt_password.setText("");
         edtxt_password_c.setText("");
     }
@@ -135,16 +135,18 @@ public class ModificarUsuario extends android.app.Fragment implements View.OnCli
 
                             String[] array = Constantes.AUTENTIFICACION.split("::", -1);
 
-                            usuario  = obj_funciones.generarCaracteres(5)+obj_funciones.encodeBase64(usuario).trim();
+                            String usuario_temp  = obj_funciones.generarCaracteres(5)+obj_funciones.encodeBase64(usuario).trim();
 
                             if(password.length() > 0){
-                                password  = obj_funciones.generarCaracteres(4)+obj_funciones.encodeBase64(password).trim();
+                                password  = obj_funciones.generarCaracteres(4)+password;
                             }else{
                                 password  =  array[1];
                             }
 
+                            Constantes.o_usuario.setUsuario(usuario);
+                            Constantes.o_usuario.setNombres(nombre);
 
-                            Constantes.AUTENTIFICACION = (usuario+Constantes.CONCATENACION+password).trim();
+                            Constantes.AUTENTIFICACION = (usuario_temp+Constantes.CONCATENACION+password).trim();
 
                             Log.e("ModificarUsuario ",Constantes.AUTENTIFICACION);
                             ok = true;
@@ -168,6 +170,7 @@ public class ModificarUsuario extends android.app.Fragment implements View.OnCli
 
         protected void onProgressUpdate (Void... valores) {
             if (ok) {
+                limpiarCampos();
                 obj_funciones.MensajeToast(context,mensaje_rs);
             }else{
                 obj_funciones.MensajeToast(context,mensaje);

@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.util.Base64;
 import android.widget.Toast;
 
+import com.catched_movil.app.Model.Usuario;
+
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -65,6 +67,8 @@ public class Funciones {
 
 
     public void setUsuario(ArrayList<HashMap<String, String>> resultado){
+
+        Constantes.o_usuario = new Usuario();
 
         for(HashMap<String, String> dato : resultado){
             Constantes.o_usuario.setCod_usuario(dato.get(Constantes.CT_USUARIO_COD_USUARIO));

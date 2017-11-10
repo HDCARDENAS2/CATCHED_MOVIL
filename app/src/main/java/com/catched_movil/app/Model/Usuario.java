@@ -14,13 +14,8 @@ public class Usuario {
     public String cod_roll;
     public String ind_estado;
 
-    public Usuario(String cod_usuario, String nombres, String usuario, String fecha_creacion, String cod_roll, String ind_estado) {
-        this.cod_usuario = cod_usuario;
-        this.nombres = nombres;
-        this.usuario = usuario;
-        this.fecha_creacion = fecha_creacion;
-        this.cod_roll = cod_roll;
-        this.ind_estado = ind_estado;
+    public Usuario() {
+
     }
 
     public String getCod_usuario() {

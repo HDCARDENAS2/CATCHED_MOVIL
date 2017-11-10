@@ -78,6 +78,7 @@ public class ConsultaEventos extends android.app.Fragment implements View.OnClic
             ServiceHandler servicio = new ServiceHandler();
             ArrayList<NameValuePair> parametros = new ArrayList<NameValuePair>();
             parametros.add(new BasicNameValuePair(Constantes.KEY,Constantes.AUTENTIFICACION));
+
             mensaje = "Error Desconocido.";
 
             try {
@@ -98,6 +99,9 @@ public class ConsultaEventos extends android.app.Fragment implements View.OnClic
                              );
 
                              ok = true;
+
+                        }else{
+                            mensaje = null;
                         }
 
                     } catch (JSONException e) {

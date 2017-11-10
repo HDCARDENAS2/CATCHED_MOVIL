@@ -12,7 +12,7 @@ public class Constantes {
     public static String AUTENTIFICACION                     = "";
     public static String CONCATENACION                       = "::";
     public static String ULTIMA_FECHA                        = "";
-    public final static int MODO_SERVICIO                    = ServiceHandler.GET;
+    public final static int MODO_SERVICIO                    = ServiceHandler.POST;
     public static Usuario o_usuario                          = null;
     public final static String KEY                           = "key";
     public final static String MSN                           = "msn";
@@ -29,7 +29,7 @@ public class Constantes {
     public final static String WS_CS_USUARIOS                =  URL_BASE+"ConsultaUsuarios.php";
     public final static String WS_REGISTRO_APP               =  URL_BASE+"RegistroApp.php";
     public final static String WS_REGISTRO_US                =  URL_BASE+"RegistroUsuario.php";
-    public final static String WS_MODIFICAR_US               =  URL_BASE+"RegistroUsuario.php";
+    public final static String WS_MODIFICAR_US               =  URL_BASE+"ModificarUsuario.php";
 
     public final static String CT_EVENTO_COD_EVENTO          = "COD_EVENTO";
     public final static String CT_EVENTO_RUTA                = "RUTA";

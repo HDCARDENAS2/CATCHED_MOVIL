@@ -101,11 +101,16 @@ public class RegistroServicio extends AppCompatActivity {
 
             try {
 
+                Log.e("RegistroServicio","XXX"+url_host);
+
                 String jsonStr = servicio.makeServiceCall(url_host,Constantes.WS_REGISTRO_APP,Constantes.MODO_SERVICIO,parametros);
+                Log.e("RegistroServicio x ",jsonStr);
+
                 if (jsonStr != null) {
                     try {
                         JSONObject jsonObj = new JSONObject(jsonStr);
                         AjaxResultado resultado = servicio.fn_json_to_has_map(jsonObj,null,2);
+
                         if(resultado.getErrores() != null){
                             mensaje = resultado.getErrores();
                         }else if(resultado.getResultado() != null){
