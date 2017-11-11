@@ -26,7 +26,7 @@ public class Constantes {
     public final static String WS_NOTIFICACION               =  URL_BASE+"Notificacion.php";
     public final static String WS_LONGIN                     =  URL_BASE+"LoginUsuario.php";
     public final static String WS_CS_ENVENTOS                =  URL_BASE+"ConsultaEnventos.php";
-    public final static String WS_CS_USUARIOS                =  URL_BASE+"ConsultaUsuarios.php";
+    public final static String WS_CS_IMAGEN                  =  URL_BASE+"ConsultaImagen.php";
     public final static String WS_REGISTRO_APP               =  URL_BASE+"RegistroApp.php";
     public final static String WS_REGISTRO_US                =  URL_BASE+"RegistroUsuario.php";
     public final static String WS_MODIFICAR_US               =  URL_BASE+"ModificarUsuario.php";
